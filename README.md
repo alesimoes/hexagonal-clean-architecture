@@ -23,7 +23,7 @@ Example: UserRepositoy.cs using Dapper or EntityFramework.
 EventPublisher.cs using kakfa.
 
 ## Application Layer
-The application layer is the layer responsible for connecting the inputs and outputs to the outside world.
+The application layer is responsible for connecting the inputs and outputs to the outside world.
 This connection is made through the ports.
 Use Cases are the ones who orchestrate the business rules within the application layer.
 
@@ -31,18 +31,18 @@ Use Cases are the ones who orchestrate the business rules within the application
 
 ### Use Case
 Use Case is responsible for orchestrating the business rules defined for application.
-The use case receives the input Input or Request and from the input it executes the business rules triggering the domain.
+The use case receives the Input or Request and from the input it executes the business rules triggering the domain.
 After the domain is returned, the Use Case provides the return to the output ports that are connected to that Use Case.
 
 #### Input Port
-The Use Case gateway is where it contains information for executing the use case.
-In this architecture it was defined that the Gateway must block inconsistent data to execute the use case.
+Input port is where it contains information for executing the use case.
+In this architecture it was defined that the Input Port must block inconsistent data to execute the use case.
 The idea is to stop the thief at the front door instead of letting him in to ask if he is a thief. ;-)
 
 #### Output Port
 The output ports of a Use case can be several. There is no correct number of ports plugged into a Use Case.
-Usually the exit ports of an application are implemented by infrastructure or APIs.
-An exit port for the API can be a Marker Interface that defines success or failure ports and when implemented, it provides a method for treating success or a method for treating failure.
+Usually the Output ports of an application are implemented by infrastructure or APIs.
+An Output port for the API can be a Marker Interface that defines success or failure ports and when implemented, it provides a method for treating success or a method for treating failure.
 
 Example. IOutputPort, IUserRepository, IEventPublisher and etc.
 
@@ -68,7 +68,7 @@ It will continue to perform all the operations necessary for the integrity of th
 #### Application Exceptions
 Application exceptions are generally thrown when there is an invalid data entry.
 The Gateway must ensure that data entry is consistent, remembering that the Application does not know the outer layer and cannot assume that the outer layer has done all integrity checks.
-To ensure the integrity of the Application, the input ports in case the input data are not consistent to execute the use case, it raises exceptions so that the external layer can handle the failure.
+To ensure the integrity of the Application, if there is an invalid data entry, it raises exceptions so that the external layer can handle the failure.
 
 ## Domain Layer (DDD)
 The domain layer follows the DDD Standard using rich entities, Value Objects, Event Sourcing and Domain Service.
@@ -90,10 +90,10 @@ Entities have a set of properties, methods and events related to it.
 The entity is an internal object to the domain and must be responsible for handling all domain rules related to it.
 
 A modification to an entity property must be called by a method that will trigger an event for the change to be applied to the entity.
-The triggered event is registered in the entity itself following the Event Sourcing Standard, which may or may not be published later, allowing the reconstruction of all modifications made.
+The triggered event is registered in the entity itself following the Event Sourcing Standard, which may be published later, allowing the reconstruction of all modifications made.
 
 ### Events (Event Sourcing)
-Each entity may or may not have events and event handling that will be used by it.
+Each entity may have events and event handling that will be used by it.
 
 When an action is performed on an entity, the event must be triggered for that action to be applied to the entity using the Handler subscribed to that event.
 
@@ -111,7 +111,7 @@ Recalling that the domain does not access and has no knowledge of anything beyon
 ### Domain Service
 Communication between the Application and the Domain is through a service provided by the domain.
 
-The application must not be able to manipulate entities in written form without going through a domain service.
+The application must not be able to manipulate entities in written mode without going through a domain service.
 This allows decoupling of domain rules by encapsulating calls into domain services, which tend to be more complex.
 
 Domain services encapsulate rules and not domain entities, that is, I do not have a domain service per entity, but a domain service per context.
