@@ -1,5 +1,15 @@
 
+
 # Hexagonal and Clean Architecture
+The simplest demo on how to implement a Web Api using .NET Core Entity Framework and MongoDb that protects the business rules from framework dependencies by following the Clean Architecture Principles.
+
+### Running Application
+Bring up the latest MongoDB database as well as a nice admin panel that You’ll be able to use to see what is actually happening. To get started, run:
+
+    $ docker-compose up -d
+Running migrations to create Sql database
+
+    $ \ANM\ANM.Example.Repositories> dotnet ef database update --startup-project ../ANM.Example.API
 
 ## Motivation
 
