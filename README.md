@@ -9,7 +9,7 @@ Bring up the latest MongoDB database as well as a nice admin panel that You’ll
     $ docker-compose up -d
 Running migrations to create Sql database
 
-    $ \ANM\ANM.Example.Repositories> dotnet ef database update --startup-project ../ANM.Example.API
+    $ \source\ANM.Example.Repositories> dotnet ef database update --startup-project ../ANM.Example.API
 
 ## Motivation
 
