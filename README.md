@@ -21,7 +21,7 @@ The general idea behind the hexagonal architecture style is that the dependencie
 
 The software is divided into Application and Infrastructure, in which adapters are interchangeable components developed and tested in isolation. The Application is loosely coupled to the Adapters and their implementation details.
 
-<img src = "Images/Hexagonal%20Example2.jpg" width="400"> <img src="Images/2008-onion-architecture5.png" width = "400">
+<img src = "docs/Hexagonal%20Example2.jpg" width="400"> <img src="docs/2008-onion-architecture5.png" width = "400">
 
 ### Ports
 Ports are interfaces (Marker interfaces in some cases) defined by the application that must be implemented by the outside world so that the application can receive or send information.
@@ -37,7 +37,7 @@ The application layer is responsible for connecting the inputs and outputs to th
 This connection is made through the ports.
 Use Cases are the ones who orchestrate the business rules within the application layer.
 
-<img src = "Images/hexagonal-architecture.png" width="300"> <img src="Images/Hexagonal%20Example.jpg" width="400">
+<img src = "docs/hexagonal-architecture.png" width="300"> <img src="docs/Hexagonal%20Example.jpg" width="400">
 
 ### Use Case
 Use Case is responsible for orchestrating the business rules defined for application.
