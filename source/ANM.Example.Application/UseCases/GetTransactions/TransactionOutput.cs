@@ -14,7 +14,7 @@ namespace ANM.Example.Application.UseCases.GetTransactions
         public DateTime CreatedDate { get; protected set; }
         public int WalletId { get; protected set; }
 
-        public TransactionOutput(Transaction transaction)
+        internal TransactionOutput(Transaction transaction)
         {
             this.Id = transaction.TransactionId;
             this.Ticker = transaction.Ticker;

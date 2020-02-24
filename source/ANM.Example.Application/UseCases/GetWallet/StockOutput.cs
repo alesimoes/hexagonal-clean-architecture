@@ -11,7 +11,7 @@ namespace ANM.Example.Application.UseCases.GetWallet
         public double Amount { get; protected set; }
         public int WalletId { get; protected set; }
 
-        public StockOutput(Stock stock)
+        internal StockOutput(Stock stock)
         {
             this.Id = stock.StockId;
             this.Ticker = stock.Ticker;
