@@ -1,5 +1,6 @@
 ﻿using System;
 using ANM.Example.Domain.Wallets;
+using ANM.Example.Domain.Wallets.Exceptions;
 
 namespace ANM.Example.Domain.Stocks
 {
@@ -24,6 +25,8 @@ namespace ANM.Example.Domain.Stocks
             stock.Ticker = ticker;
             stock.Quantity = quantity;
             stock.Amount = amount;
+
+            stock.Validate();
             return stock;
         }
 
@@ -31,11 +34,33 @@ namespace ANM.Example.Domain.Stocks
         {
             this.Amount = ((this.Amount * this.Quantity) + (amount * quantity)) / (this.Quantity + quantity);
             this.Quantity = this.Quantity + quantity;
+
+            this.Validate();
         }
 
         internal void SellStock(int quantity)
         {
             this.Quantity = this.Quantity - quantity;
+
+            this.Validate();
+        }
+
+        private void Validate()
+        {
+            if (string.IsNullOrWhiteSpace(this.Ticker))
+            {
+                throw new StockException("Ticker is invalid");
+            }
+
+            if (this.Quantity < 1)
+            {
+                throw new StockException("Quantity informed is invalid");
+            }
+
+            if (this.Amount < 0)
+            {
+                throw new StockException("Invalid amount");
+            }
         }
     }
 }

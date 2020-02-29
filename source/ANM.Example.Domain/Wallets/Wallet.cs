@@ -51,14 +51,7 @@ namespace ANM.Example.Domain.Wallets
             {
                 this.Transactions = new List<Transaction>();
             }
-            if (newStock.Quantity < 1)
-            {
-                throw new StockException("Quantity informed is invalid");
-            }
-            if (newStock.Amount < 0)
-            {
-                throw new StockException("Invalid amount");
-            }
+          
             Raise(StockBougthDomainEvent.Create(this, newStock));
         }
 
@@ -69,19 +62,12 @@ namespace ANM.Example.Domain.Wallets
             if (stock == null)
             {
                 throw new StockException("Ticker not found");
-            }
-            if (stock.Quantity < newStock.Quantity)
-            {
-                throw new StockException("Quantity informed is invalid");
-            }
-            if (newStock.Amount < 0)
-            {
-                throw new StockException("Invalid amount");
-            }
+            }          
             if (this.Transactions == null)
             {
                 this.Transactions = new List<Transaction>();
             }
+
             Raise(StockSoldDomainEvent.Create(this, newStock));
         }
 
